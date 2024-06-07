@@ -5,10 +5,10 @@ import { Container } from 'reactstrap';
 
 const Dashboard = () => (
     <div>
-        <MyNavbar />
+        <MyNavbar></MyNavbar>
         <div className="py-5 bg-light text-center">
             <Container>
-                <h1 className="display-3">Tienda Online</h1>
+                <h1 className="display-3">La tiendita de la esquina</h1>
                 <p className="lead"></p>
             </Container>
         </div>
