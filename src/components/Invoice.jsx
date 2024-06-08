@@ -7,7 +7,7 @@ const Invoice = ({ cart }) => {
 
     return (
         <div>
-            <h1>Invoice</h1>
+            <h1>Resumen de pago</h1>
             <ListGroup>
                 {cart.map((item) => (
                     <ListGroupItem key={item.id}>
@@ -17,9 +17,15 @@ const Invoice = ({ cart }) => {
                 ))}
             </ListGroup>
             <h2>Total: ${total}</h2>
-            <Button color="primary" as={Link} to="/dashboard">
-                Back to Dashboard
-            </Button>
+            <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center">
+                    <Link to="/tienda-online">
+                        <Button color="primary">
+                            Regresa a inicio
+                        </Button>
+                    </Link>
+                </div>
+            </div>
         </div>
     );
 };

@@ -24,7 +24,7 @@ export const CartProvider = ({ children }) => {
 
     const checkout = () => {
         setCart([]); // Clear cart after checkout
-        navigate('/invoice'); // Navigate to invoice page
+        navigate('tienda-online/invoice'); // Navigate to invoice page
     };
 
     return (

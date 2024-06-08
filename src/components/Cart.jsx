@@ -41,7 +41,7 @@ const Cart = () => {
     const { cart, checkout } = useContext(CartContext);
 
     return (
-        <div>
+        <div >
             {cart.length === 0 ? (
                 <p>Your cart is empty.</p>
             ) : (
@@ -58,7 +58,9 @@ const Cart = () => {
                     </ListGroupItem>
                 </ListGroup>
             )}
-            <Button color="success" onClick={checkout}>Checkout</Button>
+            <div className="d-flex justify-content-center">
+                <Button color="success" onClick={checkout} >ir a resumen de pago</Button>
+            </div>
         </div>
     );
 };

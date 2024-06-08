@@ -9,7 +9,7 @@ const ProductItem = ({ product }) => (
             <CardTitle tag="h5">{product.title}</CardTitle>
             <CardText>{product.description}</CardText>
             <CardText>${product.price}</CardText>
-            <Button color="primary" tag={Link} to={`/product/${product.id}`}>
+            <Button color="primary" tag={Link} to={`../tienda-online/product/${product.id}`}>
                 Ver detalles
             </Button>
         </CardBody>

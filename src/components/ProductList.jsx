@@ -35,9 +35,11 @@ const ProductList = () => {
                 ))}
             </Row>
             {hasMore && (
-                <Button color="primary" onClick={loadMore}>
-                    Load More
-                </Button>
+                <div className='d-flex justify-content-center m-3'>
+                    <Button color="primary" onClick={loadMore}>
+                        Load More
+                    </Button>
+                </div>
             )}
         </div>
     );
