@@ -8,8 +8,8 @@ import InvoicePage from './pages/InvoicePage';
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Dashboard />} />  {/* Update with element prop */}
-      <Route path="/dashboard" element={<Dashboard></Dashboard>} />  {/* This is okay for older routes */}
+      <Route path="/tienda-online" element={<Dashboard />} /> 
+      <Route path="/dashboard" element={<Dashboard></Dashboard>} />
       <Route path="/product/:id" element={<ProductPage/>} />
       <Route path="/cart" element={<CartPage></CartPage>} />
       <Route path="/invoice" element={<InvoicePage></InvoicePage>} />
