@@ -22,7 +22,7 @@ const QuantityInput = ({ item }) => {
 
     return (
         <div>
-            <label>Quantity:</label>
+            <label>Cantidad:</label>
             <Input
                 type="number"
                 value={quantity}
@@ -43,7 +43,7 @@ const Cart = () => {
     return (
         <div >
             {cart.length === 0 ? (
-                <p>Your cart is empty.</p>
+                <p>Tu carrito esta vacío</p>
             ) : (
                 <ListGroup>
                     {cart.map((item) => (

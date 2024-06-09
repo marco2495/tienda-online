@@ -49,7 +49,7 @@ const ProductDetail = () => {
                     <div style={{ marginTop: '10px' }}>
                         Cantidad en el carrito: {productCount}
                     </div>
-                    <Button color="success" onClick={checkout}>Checkout</Button>
+                    <Button color="success" onClick={checkout}>Pagar</Button>
                 </Col>
             </Row>
         </Container>
