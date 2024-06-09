@@ -59,7 +59,7 @@ const Cart = () => {
                 </ListGroup>
             )}
             <div className="d-flex justify-content-center">
-                <Button color="success" onClick={checkout} >ir a resumen de pago</Button>
+                <Button color="success" onClick={checkout} >Resumen de pago</Button>
             </div>
         </div>
     );

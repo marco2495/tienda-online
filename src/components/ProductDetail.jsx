@@ -5,12 +5,28 @@ import { getProductById } from '../api';
 import { CartContext } from '../context/CartContext';
 
 const ProductDetail = () => {
-    const {id}  = useParams();  // Use useParams to extract the id parameter
-    const { addToCart } = useContext(CartContext);
+    const { id } = useParams();
+    const { addToCart, checkout, cart } = useContext(CartContext);
     const [product, setProduct] = useState(null);
+    const [message, setMessage] = useState('');
+    const [productCount, setProductCount] = useState(0);
+
     useEffect(() => {
-        getProductById(Number(id)).then(setProduct);  // Fetch product data by id
+        getProductById(Number(id)).then(setProduct);
     }, [id]);
+
+    useEffect(() => {
+        if (product) {
+            const existingProduct = cart.find((item) => item.id === product.id);
+            setProductCount(existingProduct ? existingProduct.quantity : 0);
+        }
+    }, [cart, product]);
+
+    const handleAddToCart = (product) => {
+        addToCart(product);
+        setMessage('Agregado correctamente');
+        setTimeout(() => setMessage(''), 3000);
+    };
 
     if (!product) return <p>No existe el producto</p>;
 
@@ -18,13 +34,22 @@ const ProductDetail = () => {
         <Container>
             <Row>
                 <Col sm="6">
-                    <img src={product.image} alt={product.title} className="img-fluid" />
+                    <img src={product.image} alt={product.title} className="img-fluid w-100" />
                 </Col>
                 <Col sm="6">
                     <h1>{product.title}</h1>
                     <p>{product.description}</p>
                     <p>${product.price}</p>
-                    <Button color="primary" onClick={() => addToCart(product)}>Add to Cart</Button>
+                    <Button color="primary" onClick={() => handleAddToCart(product)}>Agregar al carrito</Button>
+                    {message && (
+                        <div style={{ marginTop: '10px', backgroundColor: 'green', color: 'white', padding: '10px', borderRadius: '5px' }}>
+                            {message}
+                        </div>
+                    )}
+                    <div style={{ marginTop: '10px' }}>
+                        Cantidad en el carrito: {productCount}
+                    </div>
+                    <Button color="success" onClick={checkout}>Checkout</Button>
                 </Col>
             </Row>
         </Container>

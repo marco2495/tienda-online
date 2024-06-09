@@ -9,9 +9,11 @@ const ProductItem = ({ product }) => (
             <CardTitle tag="h5">{product.title}</CardTitle>
             <CardText>{product.description}</CardText>
             <CardText>${product.price}</CardText>
-            <Button color="primary" tag={Link} to={`../tienda-online/product/${product.id}`}>
-                Ver detalles
-            </Button>
+            <div className='d-flex justify-content-center'>
+                <Button color="primary" tag={Link} to={`../tienda-online/product/${product.id}`}>
+                    Ver detalles
+                </Button>
+            </div>
         </CardBody>
     </Card>
 );

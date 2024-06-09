@@ -37,7 +37,7 @@ const ProductList = () => {
             {hasMore && (
                 <div className='d-flex justify-content-center m-3'>
                     <Button color="primary" onClick={loadMore}>
-                        Load More
+                        Más productos
                     </Button>
                 </div>
             )}

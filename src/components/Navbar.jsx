@@ -5,7 +5,7 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 const MyNavbar = () => (
     <Navbar color="dark" light expand="md">
         <NavbarBrand href="/tienda-online" >
-            <img width={70} style={{borderRadius:"50%"}} src="/tienda-online/src/assets/icono.png" alt="Mi logo" />
+            <img width={70} style={{borderRadius:"50%"}} src="/tienda-online/src/assets/icono.jpeg" alt="Mi logo" />
         </NavbarBrand>
         <Nav className="ml-auto" navbar>
             <NavItem>

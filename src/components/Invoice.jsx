@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, ListGroup, ListGroupItem } from 'reactstrap';
+import { CartContext } from '../context/CartContext';
 
-const Invoice = ({ cart }) => {
-    const total = cart.reduce((acc, item) => acc + item.price, 0);
+const Invoice = () => {
+    const { cart, clearCart } = useContext(CartContext);
+
+    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     return (
         <div>
@@ -12,19 +15,20 @@ const Invoice = ({ cart }) => {
                 {cart.map((item) => (
                     <ListGroupItem key={item.id}>
                         <h2>{item.title}</h2>
-                        <p>${item.price}</p>
+                        <p>{item.quantity} x ${item.price} = ${item.quantity * item.price}</p>
                     </ListGroupItem>
                 ))}
             </ListGroup>
             <h2>Total: ${total}</h2>
-            <div className="d-flex justify-content-center">
-                <div className="d-flex justify-content-center">
-                    <Link to="/tienda-online">
-                        <Button color="primary">
-                            Regresa a inicio
-                        </Button>
-                    </Link>
-                </div>
+            <Button color="primary" onClick={clearCart}>
+                Finalizar compra
+            </Button>
+            <div className="d-flex justify-content-center" style={{ marginTop: '20px' }}>
+                <Link to="/tienda-online">
+                    <Button color="primary">
+                        Regresa a inicio
+                    </Button>
+                </Link>
             </div>
         </div>
     );

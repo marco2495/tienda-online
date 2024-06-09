@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const CartContext = createContext();
@@ -6,6 +6,17 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            setCart(JSON.parse(storedCart));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }, [cart]);
 
     const addToCart = (product) => {
         const existingProduct = cart.find((item) => item.id === product.id);
@@ -23,12 +34,15 @@ export const CartProvider = ({ children }) => {
     };
 
     const checkout = () => {
-        setCart([]); // Clear cart after checkout
-        navigate('tienda-online/invoice'); // Navigate to invoice page
+        navigate('/tienda-online/invoice');
+    };
+
+    const clearCart = () => {
+        setCart([]);
     };
 
     return (
-        <CartContext.Provider value={{ cart, setCart, addToCart, checkout }}>
+        <CartContext.Provider value={{ cart, setCart, addToCart, checkout, clearCart }}>
             {children}
         </CartContext.Provider>
     );
