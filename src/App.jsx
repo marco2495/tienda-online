@@ -4,7 +4,7 @@ import Dashboard from './pages/Dashboard';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import InvoicePage from './pages/InvoicePage';
-
+import Receipt from './components/Receipt';
 const App = () => {
   return (
     <Routes>
@@ -13,6 +13,7 @@ const App = () => {
       <Route path="tienda-online/product/:id" element={<ProductPage/>} />
       <Route path="tienda-online/cart" element={<CartPage></CartPage>} />
       <Route path="tienda-online/invoice" element={<InvoicePage></InvoicePage>} />
+      <Route path="/tienda-online/receipt" element={<Receipt />} />
     </Routes>
 
   );

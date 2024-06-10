@@ -1,18 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, ListGroup, ListGroupItem } from 'reactstrap';
-import { CartContext } from '../context/CartContext';
+import { ListGroup, ListGroupItem, Button } from 'reactstrap';
 
-const Invoice = () => {
-    const { cart, finalizePurchase } = useContext(CartContext);
+const Receipt = () => {
+    const [purchasedItems, setPurchasedItems] = useState([]);
 
-    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    useEffect(() => {
+        const storedPurchasedItems = localStorage.getItem('purchasedItems');
+        if (storedPurchasedItems) {
+            setPurchasedItems(JSON.parse(storedPurchasedItems));
+            localStorage.removeItem('purchasedItems');
+        }
+    }, []);
+
+    const total = purchasedItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     return (
         <div>
-            <h1>Resumen de pago</h1>
+            <h1>Factura</h1>
             <ListGroup>
-                {cart.map((item) => (
+                {purchasedItems.map((item) => (
                     <ListGroupItem key={item.id}>
                         <h2>{item.title}</h2>
                         <p>{item.quantity} x ${item.price} = ${item.quantity * item.price}</p>
@@ -20,9 +27,6 @@ const Invoice = () => {
                 ))}
             </ListGroup>
             <h2>Total: ${total}</h2>
-            <Button color="primary" onClick={finalizePurchase}>
-                Finalizar compra
-            </Button>
             <div className="d-flex justify-content-center" style={{ marginTop: '20px' }}>
                 <Link to="/tienda-online">
                     <Button color="primary">
@@ -34,4 +38,4 @@ const Invoice = () => {
     );
 };
 
-export default Invoice;
+export default Receipt;

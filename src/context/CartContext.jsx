@@ -37,12 +37,15 @@ export const CartProvider = ({ children }) => {
         navigate('/tienda-online/invoice');
     };
 
-    const clearCart = () => {
+    const finalizePurchase = () => {
+        localStorage.setItem('purchasedItems', JSON.stringify(cart));
         setCart([]);
+        localStorage.removeItem('cart');
+        navigate('/tienda-online/receipt');
     };
 
     return (
-        <CartContext.Provider value={{ cart, setCart, addToCart, checkout, clearCart }}>
+        <CartContext.Provider value={{ cart, addToCart, checkout, finalizePurchase }}>
             {children}
         </CartContext.Provider>
     );
